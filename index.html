@@ -1,256 +1,581 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Thomas Stoyles Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thomas Stoyles — AI Engineer specialising in LangChain, RAG pipelines, Claude API, and multi-agent architecture. MSc Artificial Intelligence.">
+  <meta property="og:title" content="Thomas Stoyles — AI Engineer">
+  <meta property="og:description" content="AI Engineer with 3+ years commercial experience building production-grade generative AI solutions.">
+  <meta property="og:type" content="website">
+  <title>Thomas Stoyles — AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">TS<span class="logo-dot">.</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#academic" class="nav-link">Academic</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
-				<!-- Header -->
-					<header id="header">
-						<div class="logo">
-							<span class=""></span>
-						</div>
-						<div class="content">
-							<div class="inner">
-								<h1>Thomas Stoyles</h1>
-									An upcoming developer with knowledge in both front-end and back-end development.<br />
-									I have just completed my MSc in Artificial Intelligence and I am working on personal AI Projects
-							</div>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="#PersonalProjects">Personal Projects</a></li>
-								<li><a href="#uniwork">University work</a></li>
-								<li><a href="#professionalwork">Professional Work</a></li>
-								<li><a href="#about">About me</a></li>
-								<li><a href="#contact">Contact</a></li>
-								<!--<li><a href="#elements">Elements</a></li>-->
-							</ul>
-						</nav>
-					</header>
+  <main>
 
-				<!-- Main -->
-					<div id="main">
+    <!-- Hero -->
+    <section id="hero" class="hero">
+      <div class="hero-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="grid-overlay"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-pulse"></span>
+            Open to opportunities
+          </div>
+          <h1 class="hero-name">Thomas Stoyles</h1>
+          <div class="hero-title">
+            <span class="title-static">AI Engineer — </span><span class="title-rotating" id="rotating-title"></span><span class="cursor">|</span>
+          </div>
+          <p class="hero-tagline">
+            3+ years building production generative AI systems — multi-agent Claude architectures,
+            RAG pipelines, and enterprise automation that ships and scales.
+          </p>
+          <div class="hero-actions">
+            <a href="#work" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+          </div>
+          <div class="hero-socials">
+            <a href="https://github.com/ThomasStoyles" target="_blank" rel="noopener" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/thomas-stoyles/" target="_blank" rel="noopener" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="mailto:thomasstoyles1@gmail.com" class="social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Email
+            </a>
+          </div>
+        </div>
+        <a href="#work" class="scroll-indicator" aria-label="Scroll down">
+          <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+          </div>
+          <span>Scroll</span>
+        </a>
+      </div>
+    </section>
 
-						<!-- Intro -->
-							<article id="PersonalProjects">
-								<h2 class="major">Personal Projects</h2>
-								<p class="image main"><img src="images/intro.jpg"></p>
-							</p>
-							<p><a href="https://github.com/ThomasStoyles/AI_Stock_Prediction">Project 1: AI Stock predictor</a> 
-								This was one of the first AI's I created. This takes finance data from Yahoo.com as it tarining data and then predicts the stock in which you identify within the script.
-								Here I have used Facebook which is known as FB as its stock. This is under the company variable.  
-							</p>
-							<p><a href="https://github.com/ThomasStoyles/Image_recognition">Project 2: AI Image Recognition</a> 
-								As my passion for AI grew I started to do my own projects. This project is a AI image Recognition program that is trained on the CIFAR dataset. I started in the jupyter notebook 
-								training the AI model on the dataset using different layers and optimizers which helped the model become more accurate. Once the training was completed I created a simple GUI that 
-								allows you to upload images to the program and the model tells you what it thinks it is from the following objects, aeroplane, automobile, bird, cat, deer, dog, frog, horse, ship and trucks.
-							</p>
-							<p><a href="https://github.com/ThomasStoyles/Voice_Activated_Assistant">Project 3: Voice activated AI</a> 
-								Here I created my own voice activated AI that follows Alexa or Siri. This is a very basic shell of what can be done with it. It takes some python libaries
-								and used them to listen to what you are saying through your microphone. what you have said what you need to it runs this through some if statements to see if
-								it can match a word with insturctions. E.G. If your comment has the word time in it, it will tell you the time. Of course this can be developed further to include
-								multiple questions that use the word "time" but this hasn't been done as of yet.
-							</p>
-							<p><a href="https://github.com/ThomasStoyles/DjangoBlog">Project 4: Django Blog</a> 
-								This project is a simple blog platform built with Django, featuring user authentication, CRUD operations for posts, and a commenting system. It utilizes Bootstrap for responsive design and 
-								includes pages for user registration, post creation, and contact. Authenticated users can log in to add comments to blog posts.
-							</p>
-							<p><a href="https://github.com/ThomasStoyles/VoiceAITranslator">Project 5: AI Translator</a> 
-								This project is a full-stack application that enables real-time voice translation. Users can speak in English, and the application transcribes the speech using OpenAI's Whisper model,
-								translates the text into a selected language via GPT-3.5, and displays the translated text. The frontend is built with React and Bootstrap, providing a user-friendly interface,
-								while the backend utilizes FastAPI to handle API requests securely with API key protection.
-							</p>
-							<p><a href="https://github.com/ThomasStoyles/AskMyDocs">Project 6: AskMyDocs</a> 
-								AskMyDocs is a web application that enables users to upload PDF documents and interact with them using natural language queries. By leveraging vector search and large language models (LLMs), 
-								the application provides instant, context-aware responses to user questions, facilitating efficient information retrieval from extensive documents.
-							</p>
-							<p><a href="">Project 7: Stock Market Dashboard using Time Series Data</a> 
-								In development
-							</p>
-							</article>
+    <!-- Commercial Work -->
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Commercial Experience</span>
+          <h2 class="section-title">Production AI Systems</h2>
+          <p class="section-desc">Enterprise-grade AI solutions built and deployed across client-facing and internal products.</p>
+        </div>
+        <div class="cards-grid">
 
-						<!-- uni work -->
-							<article id="uniwork">
-								<h2 class="major">University AI Work</h2>
-								<p><i>Please note all projects are on my Github</i></p>
-								<span class="image main"><img src="images/Uni.jpg" alt="" /></span>
-								<p><a href="https://github.com/ThomasStoyles/UoE-CE889">Module 1: Neural Networks</a> Within my university course we had to create a neural network without using libraries. This  was so that we learned how to implemenet 
-									Feed-Forward Backpropagation. The task was to create neural network that played a simple python rocket game that landed the rocket on a randomly generated lander. The network would use 
-									Feed-Forward Backpropagation with the inputs being X position to target and Y position to target. The outputs was the landers thruster and landers turning. To train the network, I 
-									played the game on the "data collection" mode. This puts the inputs and outputs into a cvs file so it can be imported into the python file using pandas. Once in the cvs file I cleaned the data 
-									and ran it through the network which I created so that we was able to get a RSME value. 
-								</p>
-								<p><a href="https://github.com/ThomasStoyles/UoE-CE801">Module 2: Robotics</a> In a unstructured environment, the task involved programming the Turtlebot3 robot to complete key objectives. This included implementing a PID Controller 
-									to enable a right edge following behavior and creating a fuzzy logic controller capable of executing both right edge following and obstacle avoidance behaviors. I also had to integrate 
-									these behaviors within a unified fuzzy logic control structure, ensuring coordinated and effective functionality.
-								</p>
-								<p><a href="https://github.com/ThomasStoyles/UoE-CE811">Module 3: Game artificial intelligence</a> Within this course I had complete mulitple challenges within the term and write a report on them, these was broken down into 2 seperate assignments.
-									Here is a breakdown of the projects that needed to be completed and the link will take you to the completed reports and code.
-									<b><br>Assignment 1</b>
-									<i><br>DFS Maze generator
-									<br>NeuralBot for The Resistance Game
-									<br>Static Evaluator for Connect 4 
-									<br>Minimax Algorithm for Connect 4
-									<br>MCTS Agent for Connect 4</i>
-									<br>
-									<b><br>Assignment 2: Pacman Agents</b>
-									<i><br>ManhattanGhostDodgerAgent
-									<br>ManhattanGhostDodgerHunterAgent
-									<br>One-Step Lookahead Agents
-									<br>2 Dijkstra Algorithm Agents
-									<br>Best possible Agent</i>
-								</p>
-								<p><a href="https://github.com/ThomasStoyles/UoE-CE812">Module 4: Physics Based Games</a> This module had us creating a game based around physics, the game I choose was an Angry birds clone.
-								Within this game I had to code gravity, thrust amongst other, which also had their own individual physics. I added some finishing touches such as a background and score to finish. 
-								</p>
-								</p>
-								<p><a href="https://github.com/ThomasStoyles/UoE-CE888">Module 5: Data Science</a> This module taught me how to use and display data in useful and meaningful ways. The brief for the coursework was to take
-								weather data about Colchester and Brighton see how much renewable energy could be created through solar and wind power. With this information I had to declare how much 
-								electricity we could provide to the cities for free and for how long. There was 2 parts to this work, part one was cleaning the data and presenting it in 
-								meaningful ways through graphs and explaining how each graph helps me answer the question, along with research on how energy is produced. Part 2 was running the data 
-								through different models to see which was the most accurate and to predict the energy generated based of the research conducted in the previous part.							 
-								</p>
-								</p>
-								<p><a href="https://github.com/ThomasStoyles/UoE-903">Module 6: Group Project</a> The group project completed by my team was about the Moran process. The Moran process is a  birth-death process that models the spread of mutations
-								in two-type populations (resident-mutants) whose structure is defined by a graph. As a group our idea was originally to start using social networks or computer networks, as they represent graphs closely.
-								However whilst researching we came across the melanoma cancer cell, which can also be interpreted as a graph. With this we was able to create a visualization of the melanoma cell structure in python using 
-								the NetworkX library. This allowed us to collect data on if the mutated(Cancerous cells) would beat the healthy cells, and how often. We could then start collecting data on this through testing which allowed for 
-								the formulation of the model for estimating the relative fitness of metastatic cells given the fixation probability of cancer metastatic spread for melanoma in small tumour clusters. In the Github link is the model 
-								as well as the report, which you can read to get a full understanding of the project.
-								</p>
-								</p>
-								<p><a href="https://github.com/ThomasStoyles/UoE-901">Module 7: Dissertation(Mental Health Chatbot)</a> My dissertation is based on researching large language models and implementing a RAG system so I can specialize
-								the model to answer questions about mental health in more detail than its pre-training. To do this I take text files that are stored in a FAISS database and get the model to respond
-								to the user based on the context of these text files. The text files contain more accurate information than the pre-trained model, from a variety of sources. I then turned the model into
-								a website for users to visit and interact with. <i>(Please note the website is currently not available, when it is the link will be added.)</i> 
-								</p>
-							</article>
+          <article class="card card--featured reveal">
+            <div class="card-header">
+              <div class="card-icon card-icon--purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </div>
+              <div class="card-meta">
+                <span class="card-company">RAMarketing</span>
+                <span class="card-date">2025 – 2026</span>
+              </div>
+            </div>
+            <h3 class="card-title">Advertising Intelligence Dashboard</h3>
+            <p class="card-desc">Real-time advertising intelligence platform integrating live campaign data from multiple ad platforms via Supermetrics and Google Sheets. An embedded AI chatbot powered by multi-agent Claude architecture lets clients query campaign performance in natural language — architected to mirror across additional client accounts without structural changes.</p>
+            <div class="card-metrics">
+              <div class="metric">
+                <span class="metric-value">Multi-Agent</span>
+                <span class="metric-label">Architecture</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">Real-Time</span>
+                <span class="metric-label">Data Pipeline</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">NL Querying</span>
+                <span class="metric-label">Interface</span>
+              </div>
+            </div>
+            <div class="card-tags">
+              <span class="tag tag--primary">Claude API</span>
+              <span class="tag">Multi-Agent</span>
+              <span class="tag">Python</span>
+              <span class="tag">Supermetrics</span>
+              <span class="tag">Google Cloud</span>
+              <span class="tag">Pandas</span>
+            </div>
+          </article>
 
-						<!-- Professional Work -->
-						<article id="professionalwork">
-							<h2 class="major">Professional Work</h2>
-							<p><i>Please note all projects are on my Github</i></p>
-							<span class="image main"><img src="images/backend.jpg" alt="" /></span>
-							<p><a href="https://github.com/ThomasStoyles/BorderlandsWeaponGen">Project 1: Borderlands weapon generator - </a> 
-								This project was set out by an old employer QA. The project was to create an application that generate objects ranodmly. These objects was set upon predefined rules. 
-								In this project the objects will create a random gun from the game Borderlands. This will give you a manufacturer, gun rarity and elemental damage. The project also
-								had to be automated which was completed with Docker, Docker swarm, Jenkins and Ansible. All services was added to a virtual machine and tested with PyTest. Please see the documentaion 
-								on the Github link for a more indepth analysis.
-							</p>
-							<p><a href="https://github.com/ThomasStoyles/QAProject">Project 2: QA CRUD Project</a>
-								While at Qa they asked us to create a project so that they can show potential employers our work and skills. The breif was to create a CRUD project which uses both 
-								HTML and Python to do the tasks required. These task was Create, Add, Delete and Update. Once copmleted I also added a Jenkins pipeline into the project to make sure that 
-								the program was automaticlly tested whenever there was a commit via Github. Please see the documentaion on the Github link for a more indepth analysis.
-							</p>
-							<p><a href="https://github.com/ThomasStoyles/FDMSpring">Project 3: FDM Spring Application</a>
-								At FDM I have had many projects one including creating a Spring application that allows users to be added, deleted and updated on a banking system. I have editing the code so 
-								that it will work locally and removed any affiliation with the banking system that was in use. Instead you can now using this system locally with your own SQL server. 
-							</p>
-							<p><a href="https://github.com/ThomasStoyles/FDMReact">Project 4: FDM React Application</a>
-								Alongside the banking system I created a React Application that connected the backend of Spring to a React Frontend using the APIs in the backend to call the SQL database, and add 
-								any details that was inputted from the front-end. The front-end design has been made simple so that no correlation between the system it was used for is made.
-							</p>
-						</article>
+          <article class="card reveal">
+            <div class="card-header">
+              <div class="card-icon card-icon--cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <div class="card-meta">
+                <span class="card-company">RAMarketing</span>
+                <span class="card-date">2025 – 2026</span>
+              </div>
+            </div>
+            <h3 class="card-title">Claude Skills Suite — Research Automation</h3>
+            <p class="card-desc">Designed and deployed a suite of Claude-powered research and reporting skills across 5+ specialist teams. Competitor analysis, company background research, and pre-workshop question generation reduced from 2–4 weeks of manual effort to under 30 minutes per output. Championed adoption across 25+ non-technical staff.</p>
+            <div class="card-metrics">
+              <div class="metric">
+                <span class="metric-value">2–4 wks</span>
+                <span class="metric-label">→ 30 min</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">~20 hrs</span>
+                <span class="metric-label">saved / week</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">5+ teams</span>
+                <span class="metric-label">25+ users</span>
+              </div>
+            </div>
+            <div class="card-tags">
+              <span class="tag tag--primary">Claude Skills</span>
+              <span class="tag">Prompt Engineering</span>
+              <span class="tag">Workflow Automation</span>
+              <span class="tag">Claude API</span>
+            </div>
+          </article>
 
-						<!-- About -->
-							<article id="about">
-								<h2 class="major">About me</h2>
-								<span class="image main"><img src="images/water.jpg" alt="" /></span>
-								<p>Hi I'm Thomas Stoyles, I am a highly motivated machine learning engineer with a genuine passion for
-									technology and a strong background in coding and AI projects. Known for my
-									exceptional soft skills, solid communication, collaboration, and problem-solving, I've
-									successfully completed several AI initiative projects, utilising my technical expertise to
-									develop intelligent systems that tackle real-world challenges. Naturally curious, with a
-									desire to make a positive impact, I continually stay up-to-date with the latest
-									advancements in technology. I am a team-oriented individual who thrives in collaborative
-									environments, valuing diverse perspectives and effectively communicating complex
-									technical concepts to both technical and non-technical stakeholders.</p>
-								<p>
-									My eductaion started at the university
-								</p>
-								
-							</article>
+          <article class="card reveal">
+            <div class="card-header">
+              <div class="card-icon card-icon--green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div class="card-meta">
+                <span class="card-company">FDM</span>
+                <span class="card-date">Jan – Jun 2025</span>
+              </div>
+            </div>
+            <h3 class="card-title">AI Financial Analysis Chatbot</h3>
+            <p class="card-desc">AI-powered financial chatbot leveraging LangChain, prompt engineering, and live market data from Yahoo Finance for real-time dataset analysis. Full-stack delivery: Spring Boot microservices backend connected to a React dashboard through secure REST APIs, with role-based access controls aligned to financial services security standards.</p>
+            <div class="card-tags">
+              <span class="tag tag--primary">LangChain</span>
+              <span class="tag">Spring Boot</span>
+              <span class="tag">React</span>
+              <span class="tag">Java</span>
+              <span class="tag">Yahoo Finance</span>
+              <span class="tag">REST APIs</span>
+            </div>
+          </article>
 
-						<!-- Contact -->
-							<article id="contact">
-								<h2 class="major">Contact</h2>
-								<p>Email: thomasstoyles1@gmail.com</p>
-								<ul class="icons">
-									<li><a href="https://www.linkedin.com/in/thomas-stoyles-a996a1172/" class="icon brands fa-linkedin"><span class="label">linkedin</span></a></li>
-									<li><a href="https://github.com/ThomasStoyles" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</article>
+          <article class="card reveal">
+            <div class="card-header">
+              <div class="card-icon card-icon--orange">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+              </div>
+              <div class="card-meta">
+                <span class="card-company">Planning Hub</span>
+                <span class="card-date">Oct – Dec 2024</span>
+              </div>
+            </div>
+            <h3 class="card-title">ML Training Data Acquisition Pipeline</h3>
+            <p class="card-desc">Automated web-scraping infrastructure crawling 250+ online sources for targeted keywords, documents, and reference links to build high-quality ML training datasets. Data cleansing and deduplication pipelines reduced downstream model inconsistency by 20%, feeding a SQL metadata database tracking 100,000+ documents.</p>
+            <div class="card-metrics">
+              <div class="metric">
+                <span class="metric-value">250+</span>
+                <span class="metric-label">sources crawled</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">100k+</span>
+                <span class="metric-label">docs tracked</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">–20%</span>
+                <span class="metric-label">inconsistency</span>
+              </div>
+            </div>
+            <div class="card-tags">
+              <span class="tag tag--primary">Python</span>
+              <span class="tag">Docker</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Web Scraping</span>
+              <span class="tag">Data Pipelines</span>
+            </div>
+          </article>
 
-						<!-- Elements -->
-							<article id="elements">
-								<h2 class="major">Elements</h2>
-								<section>
-									<h4>Icons</h4>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-									</ul>
+        </div>
+      </div>
+    </section>
 
-									<h4>Actions</h4>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-								</section>
-								<section>
-									<h3 class="major">Buttons</h3>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Primary</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-										<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-									</ul>
-									<ul class="actions">
-										<li><span class="button primary disabled">Disabled</span></li>
-										<li><span class="button disabled">Disabled</span></li>
-									</ul>
-								</section>
+    <!-- Personal Projects -->
+    <section id="projects" class="section section--alt">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Personal Projects</span>
+          <h2 class="section-title">Built for the Challenge</h2>
+          <p class="section-desc">Side projects exploring the edges of AI — end-to-end implementations built outside of work commitments.</p>
+        </div>
+        <div class="cards-grid cards-grid--4">
 
-							</article>
+          <article class="card card--project reveal">
+            <div class="project-badge">RAG</div>
+            <div class="card-icon card-icon--purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <h3 class="card-title">AskMyDocs</h3>
+            <p class="card-desc">Full-stack web application enabling users to upload PDF documents and query them in natural language. End-to-end RAG pipeline with FAISS vector search and LLM integration — production-ready document intelligence outside an academic context.</p>
+            <div class="card-tags">
+              <span class="tag">Python</span>
+              <span class="tag">LangChain</span>
+              <span class="tag">FAISS</span>
+              <span class="tag">Vector Search</span>
+              <span class="tag">FastAPI</span>
+            </div>
+            <a href="https://github.com/ThomasStoyles" target="_blank" rel="noopener" class="card-link">View on GitHub &rarr;</a>
+          </article>
 
-					</div>
+          <article class="card card--project reveal">
+            <div class="project-badge">Voice AI</div>
+            <div class="card-icon card-icon--cyan">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 016 0v6a3 3 0 01-3 3z"/></svg>
+            </div>
+            <h3 class="card-title">AI Voice Translator</h3>
+            <p class="card-desc">Real-time voice translation using OpenAI Whisper for speech transcription and GPT-3.5-turbo for translation. React frontend with FastAPI backend, secured with API key authentication and designed for low-latency performance.</p>
+            <div class="card-tags">
+              <span class="tag">OpenAI Whisper</span>
+              <span class="tag">GPT-3.5</span>
+              <span class="tag">React</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Python</span>
+            </div>
+            <a href="https://github.com/ThomasStoyles" target="_blank" rel="noopener" class="card-link">View on GitHub &rarr;</a>
+          </article>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<p></p> 
-					</footer>
+          <article class="card card--project reveal">
+            <div class="project-badge">ML</div>
+            <div class="card-icon card-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 class="card-title">AI Stock Predictor</h3>
+            <p class="card-desc">Machine learning pipeline for stock price movement prediction using historical OHLCV data, technical indicators, and sentiment analysis. Trains and benchmarks multiple models — from gradient boosted trees to LSTM networks.</p>
+            <div class="card-tags">
+              <span class="tag">Python</span>
+              <span class="tag">scikit-learn</span>
+              <span class="tag">LSTM</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">Matplotlib</span>
+            </div>
+            <a href="https://github.com/ThomasStoyles" target="_blank" rel="noopener" class="card-link">View on GitHub &rarr;</a>
+          </article>
 
-			</div>
+          <article class="card card--project reveal">
+            <div class="project-badge">CV</div>
+            <div class="card-icon card-icon--orange">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+            </div>
+            <h3 class="card-title">AI Image Recognition — CIFAR</h3>
+            <p class="card-desc">Convolutional Neural Network for CIFAR-10 image classification, extended with transfer learning and data augmentation techniques, exploring trade-offs between model complexity, training time, and generalisation accuracy.</p>
+            <div class="card-tags">
+              <span class="tag">Python</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">CNN</span>
+              <span class="tag">CIFAR-10</span>
+              <span class="tag">Transfer Learning</span>
+            </div>
+            <a href="https://github.com/ThomasStoyles" target="_blank" rel="noopener" class="card-link">View on GitHub &rarr;</a>
+          </article>
 
-		<!-- BG -->
-			<div id="bg"></div>
+        </div>
+      </div>
+    </section>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    <!-- Academic -->
+    <section id="academic" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Education</span>
+          <h2 class="section-title">Academic Background</h2>
+          <p class="section-desc">Formal AI education grounding the commercial work in research-backed theory.</p>
+        </div>
 
-	</body>
+        <div class="academic-grid">
+          <div class="academic-main reveal">
+
+            <div class="degree-card degree-card--featured">
+              <div class="degree-header">
+                <div>
+                  <div class="degree-institution">University of Essex</div>
+                  <h3 class="degree-title">MSc Artificial Intelligence</h3>
+                  <div class="degree-meta">
+                    <span class="degree-grade">Merit &middot; 3.9 GPA</span>
+                    <span class="degree-year">2023 – 2024</span>
+                  </div>
+                </div>
+                <div class="degree-badge">MSc</div>
+              </div>
+
+              <div class="dissertation">
+                <div class="dissertation-label">Dissertation</div>
+                <h4 class="dissertation-title">Mental Health Chatbot — RAG Architecture</h4>
+                <p class="dissertation-desc">RAG-based mental health assistant using a FAISS vector database and a large language model, specialising responses using curated domain-specific text sources. Deployed as a publicly accessible web application.</p>
+                <div class="card-tags">
+                  <span class="tag tag--primary">RAG</span>
+                  <span class="tag">FAISS</span>
+                  <span class="tag">LLM</span>
+                  <span class="tag">Python</span>
+                  <span class="tag">Web App</span>
+                </div>
+              </div>
+
+              <div class="modules-section">
+                <div class="modules-label">Notable Work &amp; Modules</div>
+                <div class="modules-grid">
+                  <div class="module-item"><span class="module-dot"></span>Neural Network from scratch — manual backpropagation in NumPy</div>
+                  <div class="module-item"><span class="module-dot"></span>Machine Learning &amp; Deep Learning</div>
+                  <div class="module-item"><span class="module-dot"></span>Natural Language Processing</div>
+                  <div class="module-item"><span class="module-dot"></span>Computer Vision</div>
+                  <div class="module-item"><span class="module-dot"></span>Intelligent Agents &amp; Multi-Agent Systems</div>
+                  <div class="module-item"><span class="module-dot"></span>Data Analytics &amp; Visualisation</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="degree-card">
+              <div class="degree-header">
+                <div>
+                  <div class="degree-institution">University of Greenwich</div>
+                  <h3 class="degree-title">BSc Computer Science</h3>
+                  <div class="degree-meta">
+                    <span class="degree-grade degree-grade--gold">First Class Honours</span>
+                    <span class="degree-year">2017 – 2021</span>
+                  </div>
+                </div>
+                <div class="degree-badge degree-badge--secondary">BSc</div>
+              </div>
+              <p class="degree-desc">Four-year Computer Science programme covering software engineering, algorithms, databases, networking, and systems design. Graduated with First Class Honours.</p>
+            </div>
+
+          </div>
+
+          <div class="academic-side reveal">
+            <div class="certs-card">
+              <h3 class="certs-title">Certifications</h3>
+              <div class="cert-list">
+                <div class="cert-item"><span class="cert-dot cert-dot--aws"></span>AWS Cloud Practitioner (CLF-C01)</div>
+                <div class="cert-item"><span class="cert-dot cert-dot--azure"></span>AZ-900: Azure Fundamentals</div>
+                <div class="cert-item"><span class="cert-dot cert-dot--azure"></span>Azure AI Fundamentals</div>
+                <div class="cert-item"><span class="cert-dot cert-dot--docker"></span>Docker Certified Associate (DCA)</div>
+                <div class="cert-item"><span class="cert-dot cert-dot--sec"></span>Foundation Certificate in Cyber Security</div>
+                <div class="cert-item"><span class="cert-dot cert-dot--agile"></span>ITIL&reg; 4 Foundation</div>
+                <div class="cert-item"><span class="cert-dot cert-dot--agile"></span>Certified Scrum Master</div>
+                <div class="cert-item"><span class="cert-dot cert-dot--agile"></span>Scrum Product Owner</div>
+                <div class="cert-item"><span class="cert-dot cert-dot--agile"></span>Agile Fundamentals</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section section--alt">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">About Me</span>
+          <h2 class="section-title">The Engineer Behind the Work</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-bio reveal">
+            <p class="bio-text">
+              I'm a mid-level AI Engineer with over three years of commercial experience turning AI research into production systems that actually deliver. My background spans the full AI delivery lifecycle — from defining architecture to writing the code to deploying to cloud and championing adoption with non-technical teams.
+            </p>
+            <p class="bio-text">
+              My technical home is Python and the modern AI stack: LangChain, RAG pipelines, Claude APIs, and multi-agent systems. I'm equally comfortable in Java Spring Boot backends or React frontends when the project needs it. On the cloud side I've shipped to Google Cloud and AWS, with Docker and Kubernetes as standard tooling.
+            </p>
+            <p class="bio-text">
+              What I care about most is building AI that actually gets used — not demos. Every commercial project I've shipped has landed in the hands of real users and reduced real overhead. That's the measure I hold myself to.
+            </p>
+            <div class="about-actions">
+              <a href="mailto:thomasstoyles1@gmail.com" class="btn btn-primary">Get In Touch</a>
+              <a href="https://www.linkedin.com/in/thomas-stoyles/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn Profile</a>
+            </div>
+          </div>
+          <div class="about-skills reveal">
+            <div class="skills-container">
+              <div class="skill-group">
+                <h4 class="skill-group-title"><span class="skill-group-icon">&#9889;</span> AI &amp; ML</h4>
+                <div class="skill-tags">
+                  <span class="skill-tag skill-tag--primary">LangChain</span>
+                  <span class="skill-tag skill-tag--primary">RAG Systems</span>
+                  <span class="skill-tag skill-tag--primary">Claude API</span>
+                  <span class="skill-tag skill-tag--primary">Claude Skills</span>
+                  <span class="skill-tag skill-tag--primary">Multi-Agent</span>
+                  <span class="skill-tag">Prompt Engineering</span>
+                  <span class="skill-tag">Vector Search</span>
+                  <span class="skill-tag">FAISS</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h4 class="skill-group-title"><span class="skill-group-icon">&#128187;</span> Languages</h4>
+                <div class="skill-tags">
+                  <span class="skill-tag">Python</span>
+                  <span class="skill-tag">Java</span>
+                  <span class="skill-tag">SQL</span>
+                  <span class="skill-tag">HTML / CSS</span>
+                  <span class="skill-tag">C#</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h4 class="skill-group-title"><span class="skill-group-icon">&#128295;</span> Frameworks</h4>
+                <div class="skill-tags">
+                  <span class="skill-tag">Spring Boot</span>
+                  <span class="skill-tag">React</span>
+                  <span class="skill-tag">Flask</span>
+                  <span class="skill-tag">FastAPI</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h4 class="skill-group-title"><span class="skill-group-icon">&#9729;&#65039;</span> Cloud &amp; DevOps</h4>
+                <div class="skill-tags">
+                  <span class="skill-tag">Google Cloud</span>
+                  <span class="skill-tag">AWS</span>
+                  <span class="skill-tag">Docker</span>
+                  <span class="skill-tag">Kubernetes</span>
+                  <span class="skill-tag">Terraform</span>
+                  <span class="skill-tag">CI/CD</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h4 class="skill-group-title"><span class="skill-group-icon">&#128202;</span> Data</h4>
+                <div class="skill-tags">
+                  <span class="skill-tag">Pandas</span>
+                  <span class="skill-tag">NumPy</span>
+                  <span class="skill-tag">Matplotlib</span>
+                  <span class="skill-tag">Data Pipelines</span>
+                  <span class="skill-tag">Web Scraping</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-wrapper reveal">
+          <div class="section-label">Contact</div>
+          <h2 class="contact-title">Let's Build Something</h2>
+          <p class="contact-desc">
+            Open to senior AI Engineer roles, contract work, and interesting conversations about production AI systems.
+            Response time is typically same-day.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:thomasstoyles1@gmail.com" class="contact-link contact-link--primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              thomasstoyles1@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/thomas-stoyles/" target="_blank" rel="noopener" class="contact-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/ThomasStoyles" target="_blank" rel="noopener" class="contact-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Thomas Stoyles &middot; AI Engineer</p>
+    </div>
+  </footer>
+
+  <!-- Chat Widget -->
+  <div id="chat-widget">
+    <button id="chat-toggle" aria-label="Chat with portfolio assistant">
+      <svg id="chat-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+      </svg>
+      <svg id="chat-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22" style="display:none">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+      <span class="chat-label">Chat with my portfolio</span>
+    </button>
+
+    <div id="chat-panel" aria-hidden="true">
+      <div id="chat-panel-header">
+        <div class="chat-panel-info">
+          <div class="chat-avatar-wrap">
+            <div class="chat-avatar">AI</div>
+            <span class="chat-online-dot"></span>
+          </div>
+          <div>
+            <p class="chat-panel-name">Portfolio Assistant</p>
+            <p class="chat-panel-status">Ask me about Thomas</p>
+          </div>
+        </div>
+        <div class="chat-header-actions">
+          <button id="chat-key-btn" title="Configure API key" class="chat-icon-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+          </button>
+          <button id="chat-close" aria-label="Close chat" class="chat-icon-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="chat-messages">
+        <div class="chat-msg chat-msg--assistant">
+          <p>Hi! I'm Thomas's portfolio assistant powered by Claude. Ask me anything about his experience, projects, or skills.</p>
+        </div>
+      </div>
+
+      <div id="chat-key-setup" class="chat-key-panel" style="display:none">
+        <p class="key-setup-title">Configure API Key</p>
+        <p class="key-setup-desc">Enter your Anthropic API key to enable the chat. Stored locally in your browser only — never sent anywhere except directly to Anthropic.</p>
+        <input type="password" id="key-input" placeholder="sk-ant-..." class="key-input" autocomplete="off">
+        <div class="key-actions">
+          <button id="key-save" class="btn-key-save">Save Key</button>
+          <button id="key-cancel" class="btn-key-cancel">Cancel</button>
+        </div>
+      </div>
+
+      <div id="chat-input-area">
+        <textarea id="chat-input" placeholder="Ask about Thomas's experience..." rows="1" maxlength="500"></textarea>
+        <button id="chat-send" aria-label="Send message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js" onerror="window.CLAUDE_API_KEY=undefined;"></script>
+  <script src="js/main.js"></script>
+  <script src="js/chat.js"></script>
+</body>
 </html>
