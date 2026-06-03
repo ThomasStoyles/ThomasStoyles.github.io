@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Architecture Advisor — describe a business problem, get a production-ready multi-agent system design. Built by Thomas Stoyles, AI Engineer.">
+  <title>AI Architecture Advisor — Thomas Stoyles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0b;
+      --bg2: #111113;
+      --bg3: #18181b;
+      --border: rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.14);
+      --text: #e4e4e7;
+      --text2: #a1a1aa;
+      --text3: #71717a;
+      --accent: #6366f1;
+      --accent2: #818cf8;
+      --accent-bg: rgba(99,102,241,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .noise {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Nav */
+    .topnav {
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,11,0.85); backdrop-filter: blur(12px);
+    }
+    .topnav-inner {
+      max-width: 860px; margin: 0 auto; padding: 0 24px;
+      height: 52px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .back-link {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; color: var(--text2); text-decoration: none;
+      transition: color .15s;
+    }
+    .back-link:hover { color: var(--text); }
+    .back-link svg { flex-shrink: 0; }
+    .nav-logo {
+      font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none;
+      letter-spacing: -.01em;
+    }
+    .nav-logo span { color: var(--accent2); }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    header { padding: 48px 0 40px; border-bottom: 1px solid var(--border); }
+
+    .header-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 500; letter-spacing: .06em;
+      color: var(--accent2); background: var(--accent-bg);
+      padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(99,102,241,0.25);
+      margin-bottom: 14px; text-transform: uppercase;
+    }
+    .badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent2); animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.85)} }
+
+    h1 { font-size: 28px; font-weight: 600; color: #fff; line-height: 1.25; letter-spacing: -.02em; margin-bottom: 10px; }
+    h1 span { color: var(--accent2); }
+
+    .subtitle { font-size: 14px; color: var(--text2); max-width: 480px; line-height: 1.65; }
+
+    .author-link {
+      display: flex; align-items: center; gap: 8px; text-decoration: none;
+      padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px;
+      background: var(--bg2); white-space: nowrap; flex-shrink: 0;
+      transition: border-color .15s;
+    }
+    .author-link:hover { border-color: var(--border2); }
+    .author-av {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--accent-bg); border: 1px solid rgba(99,102,241,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 600; color: var(--accent2);
+    }
+    .author-text { display: flex; flex-direction: column; }
+    .author-name { font-size: 12px; font-weight: 500; color: var(--text); }
+    .author-role { font-size: 10px; color: var(--text3); }
+
+    main { padding: 36px 0 80px; }
+
+    /* Key banner */
+    .key-banner {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      background: var(--accent-bg); border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 12px; padding: 12px 16px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .key-banner-text { font-size: 13px; color: var(--text2); }
+    .key-banner-text strong { color: var(--text); }
+    .key-banner-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+    .key-input-inline {
+      font-size: 12px; padding: 6px 10px; border-radius: 7px;
+      border: 1px solid var(--border); background: var(--bg3);
+      color: var(--text); outline: none; width: 220px;
+      font-family: 'JetBrains Mono', monospace;
+      transition: border-color .15s;
+    }
+    .key-input-inline:focus { border-color: rgba(99,102,241,0.5); }
+    .key-input-inline::placeholder { color: var(--text3); font-family: 'Inter', sans-serif; }
+    .key-save-btn {
+      font-size: 12px; padding: 6px 14px; border-radius: 7px;
+      background: var(--accent); color: #fff; border: none; cursor: pointer;
+      font-weight: 500; transition: background .15s; white-space: nowrap;
+    }
+    .key-save-btn:hover { background: #5558e3; }
+    .key-clear-btn {
+      font-size: 12px; padding: 6px 10px; border-radius: 7px;
+      border: 1px solid var(--border); color: var(--text3);
+      background: transparent; cursor: pointer; transition: all .15s;
+    }
+    .key-clear-btn:hover { color: var(--text); border-color: var(--border2); }
+
+    /* Input card */
+    .input-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px; margin-bottom: 24px;
+    }
+    .input-label {
+      font-size: 11px; font-weight: 500; color: var(--text3);
+      text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px;
+    }
+    textarea {
+      width: 100%; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px; font-size: 13px; font-family: 'Inter', sans-serif;
+      color: var(--text); line-height: 1.6; resize: none; outline: none;
+      transition: border-color .15s;
+    }
+    textarea:focus { border-color: rgba(99,102,241,0.5); }
+    textarea::placeholder { color: var(--text3); }
+
+    .examples { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .ex-pill {
+      font-size: 11px; padding: 4px 10px; border-radius: 20px;
+      border: 1px solid var(--border); color: var(--text3);
+      background: transparent; cursor: pointer; transition: all .15s;
+    }
+    .ex-pill:hover { border-color: var(--border2); color: var(--text); background: var(--bg3); }
+
+    .controls { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    select {
+      font-size: 12px; padding: 8px 12px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg3);
+      color: var(--text); outline: none; cursor: pointer; flex: 1; min-width: 130px;
+      transition: border-color .15s;
+    }
+    select:focus { border-color: rgba(99,102,241,0.5); }
+
+    .gen-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 20px; border-radius: 8px; font-size: 13px; font-weight: 500;
+      background: var(--accent); color: #fff; border: none; cursor: pointer;
+      transition: background .15s, opacity .15s; white-space: nowrap;
+    }
+    .gen-btn:hover { background: #5558e3; }
+    .gen-btn:disabled { opacity: .4; cursor: not-allowed; }
+    .gen-btn svg { width: 15px; height: 15px; }
+
+    /* Output */
+    .result-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 16px; margin-bottom: 24px;
+    }
+    .sys-name { font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .sys-summary { font-size: 13px; color: var(--text2); }
+
+    .copy-btn {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; padding: 6px 12px; border-radius: 8px;
+      border: 1px solid var(--border); color: var(--text2);
+      background: var(--bg3); cursor: pointer; white-space: nowrap; flex-shrink: 0;
+      transition: all .15s;
+    }
+    .copy-btn:hover { border-color: var(--border2); color: var(--text); }
+
+    .section-head {
+      font-size: 11px; font-weight: 500; color: var(--text3);
+      text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px;
+    }
+
+    .agent-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 10px; margin-bottom: 24px;
+    }
+    .agent-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 16px; transition: border-color .15s;
+    }
+    .agent-card:hover { border-color: var(--border2); }
+    .a-icon {
+      width: 34px; height: 34px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 10px; font-size: 15px;
+    }
+    .a-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 5px; }
+    .a-role { font-size: 12px; color: var(--text2); line-height: 1.55; margin-bottom: 9px; }
+    .a-tools { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tool-tag {
+      font-size: 10px; padding: 2px 7px; border-radius: 20px;
+      background: var(--bg3); color: var(--text3); border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .flow-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 4px 0; margin-bottom: 24px;
+    }
+    .flow-step {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .step-num {
+      font-size: 11px; font-weight: 600; color: var(--accent2);
+      background: var(--accent-bg); border: 1px solid rgba(99,102,241,0.2);
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+    }
+    .step-agent { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+    .step-action { font-size: 12px; color: var(--text2); }
+    .step-output {
+      font-size: 11px; color: var(--text3); margin-top: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg3); display: inline-block; padding: 2px 8px;
+      border-radius: 4px; border: 1px solid var(--border);
+    }
+
+    .rec-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 8px; margin-bottom: 24px;
+    }
+    .rec-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+    .rec-label { font-size: 10px; color: var(--text3); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .06em; }
+    .rec-val { font-size: 13px; font-weight: 500; color: var(--text); }
+
+    .risk-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 4px 0; margin-bottom: 24px;
+    }
+    .risk-row {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+    }
+    .risk-row:last-child { border-bottom: none; }
+    .risk-badge {
+      font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: .04em; flex-shrink: 0; margin-top: 2px;
+    }
+    .risk-high   { background: rgba(248,113,113,0.15); color: #fca5a5; border: 1px solid rgba(248,113,113,0.3); }
+    .risk-medium { background: rgba(245,158,11,0.15);  color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+    .risk-low    { background: rgba(74,222,128,0.15);  color: #86efac; border: 1px solid rgba(74,222,128,0.3); }
+    .risk-text { flex: 1; }
+    .risk-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+    .risk-mit { font-size: 11px; color: var(--text3); }
+
+    .skeleton { background: var(--bg3); border-radius: 6px; height: 14px; margin: 6px 0; animation: shimmer 1.5s ease-in-out infinite; }
+    @keyframes shimmer { 0%,100%{opacity:.4} 50%{opacity:.8} }
+
+    .error-card {
+      padding: 16px; background: rgba(248,113,113,0.08);
+      border: 1px solid rgba(248,113,113,0.2);
+      border-radius: 12px; font-size: 13px; color: #fca5a5;
+    }
+
+    @media (max-width: 600px) {
+      .header-inner { flex-direction: column; }
+      .controls { flex-direction: column; }
+      .gen-btn { justify-content: center; }
+      .key-banner { flex-direction: column; align-items: flex-start; }
+      .key-input-inline { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="noise"></div>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="../index.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to portfolio
+    </a>
+    <a href="../index.html" class="nav-logo">TS<span>.</span></a>
+  </div>
+</nav>
+
+<div class="container">
+  <header>
+    <div class="header-inner">
+      <div>
+        <div class="badge">Multi-agent architecture</div>
+        <h1>AI <span>Architecture</span> Advisor</h1>
+        <p class="subtitle">Describe a business problem. Get a production-ready multi-agent system design — agents, orchestration flow, tech stack, and risk analysis.</p>
+      </div>
+      <a class="author-link" href="../index.html">
+        <div class="author-av">TS</div>
+        <div class="author-text">
+          <span class="author-name">Thomas Stoyles</span>
+          <span class="author-role">AI Engineer</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div id="key-banner" class="key-banner" style="display:none">
+      <div class="key-banner-text">
+        <strong>Anthropic API key required.</strong> Your key is stored locally in your browser — never sent anywhere except directly to Anthropic.
+      </div>
+      <div class="key-banner-actions">
+        <input type="password" id="key-input" class="key-input-inline" placeholder="sk-ant-..." autocomplete="off">
+        <button class="key-save-btn" onclick="saveKey()">Save</button>
+      </div>
+    </div>
+    <div id="key-set-banner" class="key-banner" style="display:none">
+      <div class="key-banner-text"><strong>API key configured.</strong> Ready to generate architectures.</div>
+      <div class="key-banner-actions">
+        <button class="key-clear-btn" onclick="clearKey()">Remove key</button>
+      </div>
+    </div>
+
+    <div class="input-card">
+      <div class="input-label">Describe the business problem</div>
+      <textarea id="problem" rows="3" placeholder="e.g. We need to automate competitor monitoring across 50+ websites and generate weekly briefings for our sales team, flagging pricing changes and new product launches..."></textarea>
+      <div class="examples">
+        <span class="ex-pill" onclick="setEx(this)">Automate customer support triage across email, chat, and tickets</span>
+        <span class="ex-pill" onclick="setEx(this)">Monitor competitor pricing daily and alert the team to changes</span>
+        <span class="ex-pill" onclick="setEx(this)">Research and draft personalised outreach emails for 200 leads/week</span>
+        <span class="ex-pill" onclick="setEx(this)">Extract and summarise key clauses from contract PDFs before legal review</span>
+      </div>
+      <div class="controls">
+        <select id="complexity">
+          <option value="lean">Lean (2-3 agents)</option>
+          <option value="standard" selected>Standard (4-5 agents)</option>
+          <option value="enterprise">Enterprise (6+ agents)</option>
+        </select>
+        <select id="stack">
+          <option value="Python + Claude API" selected>Python / Claude API</option>
+          <option value="LangChain + LangGraph">LangChain</option>
+          <option value="AutoGen">AutoGen</option>
+          <option value="CrewAI">CrewAI</option>
+        </select>
+        <button class="gen-btn" id="gen-btn" onclick="generate()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Generate architecture
+        </button>
+      </div>
+    </div>
+
+    <div id="output"></div>
+  </main>
+</div>
+
+<script src="../js/config.js" onerror="window.CLAUDE_API_KEY=undefined;"></script>
+<script>
+const MODEL = 'claude-haiku-4-5-20251001';
+
+const colorMap = {
+  blue:   'background:rgba(99,102,241,0.15);color:#a5b4fc',
+  teal:   'background:rgba(45,212,191,0.15);color:#5eead4',
+  purple: 'background:rgba(192,132,252,0.15);color:#d8b4fe',
+  coral:  'background:rgba(248,113,113,0.15);color:#fca5a5',
+  amber:  'background:rgba(245,158,11,0.15);color:#fcd34d'
+};
+
+function getApiKey() {
+  return (typeof window.CLAUDE_API_KEY !== 'undefined' && window.CLAUDE_API_KEY)
+    || localStorage.getItem('portfolio_claude_key')
+    || null;
+}
+
+function saveKey() {
+  const val = document.getElementById('key-input').value.trim();
+  if (!val.startsWith('sk-ant-')) {
+    document.getElementById('key-input').style.borderColor = '#ef4444';
+    return;
+  }
+  localStorage.setItem('portfolio_claude_key', val);
+  document.getElementById('key-input').value = '';
+  renderKeyBanners();
+}
+
+function clearKey() {
+  localStorage.removeItem('portfolio_claude_key');
+  renderKeyBanners();
+}
+
+function renderKeyBanners() {
+  const hasKey = !!getApiKey();
+  document.getElementById('key-banner').style.display     = hasKey ? 'none'  : 'flex';
+  document.getElementById('key-set-banner').style.display = hasKey ? 'flex'  : 'none';
+}
+
+document.getElementById('key-input').addEventListener('input', () => {
+  document.getElementById('key-input').style.borderColor = '';
+});
+
+function setEx(el) {
+  document.getElementById('problem').value = el.textContent.trim();
+}
+
+function showSkeleton() {
+  document.getElementById('output').innerHTML = `
+    <div style="margin-bottom:24px">
+      <div class="skeleton" style="width:40%;height:20px;margin-bottom:8px"></div>
+      <div class="skeleton" style="width:70%"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px">
+      ${[1,2,3].map(() => `
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px">
+          <div class="skeleton" style="width:34px;height:34px;border-radius:8px;margin-bottom:10px"></div>
+          <div class="skeleton" style="width:65%"></div>
+          <div class="skeleton" style="width:90%"></div>
+          <div class="skeleton" style="width:80%"></div>
+        </div>`).join('')}
+    </div>
+    <div class="skeleton" style="width:100%;height:120px;border-radius:12px;margin-bottom:24px"></div>`;
+}
+
+async function generate() {
+  const problem = document.getElementById('problem').value.trim();
+  if (!problem) { document.getElementById('problem').focus(); return; }
+
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    renderKeyBanners();
+    document.getElementById('key-input').focus();
+    return;
+  }
+
+  const complexity = document.getElementById('complexity').value;
+  const stack = document.getElementById('stack').value;
+  const btn = document.getElementById('gen-btn');
+  btn.disabled = true;
+  showSkeleton();
+
+  const agentCount = complexity === 'lean' ? '2-3' : complexity === 'standard' ? '4-5' : '6-8';
+
+  const prompt = `You are an expert AI systems architect specialising in multi-agent systems. Given a business problem, produce a production-ready multi-agent architecture design.
+
+Business problem: ${problem}
+Target complexity: ${agentCount} agents
+Implementation stack: ${stack}
+
+Respond ONLY with a valid JSON object. No markdown, no backticks, no preamble. Exact structure:
+
+{
+  "systemName": "short system name (3-5 words)",
+  "summary": "one sentence describing what the system does",
+  "agents": [
+    {
+      "name": "Agent Name",
+      "role": "What this agent does (1-2 sentences)",
+      "tools": ["tool1", "tool2", "tool3"],
+      "color": "one of: blue, teal, purple, coral, amber"
+    }
+  ],
+  "orchestrationFlow": [
+    {
+      "step": 1,
+      "agent": "Agent Name",
+      "action": "What this agent does at this step",
+      "output": "What it produces (short)"
+    }
+  ],
+  "stack": {
+    "framework": "specific framework recommendation",
+    "memory": "memory or state management approach",
+    "deployment": "deployment recommendation",
+    "estimatedBuildTime": "e.g. 2-3 weeks for a small team"
+  },
+  "risks": [
+    {
+      "level": "high",
+      "risk": "Brief risk description",
+      "mitigation": "How to handle it"
+    }
+  ]
+}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        max_tokens: 1500,
+        system: 'You are a JSON API. Output only a single valid JSON object. No prose, no markdown, no code fences, no explanation before or after. The response must be parseable by JSON.parse().',
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      const msg = data.error?.message || `API error ${res.status}`;
+      document.getElementById('output').innerHTML = `<div class="error-card">Failed to generate architecture: ${msg}</div>`;
+      btn.disabled = false;
+      return;
+    }
+
+    const raw = data.content?.[0]?.text || '';
+    const match = raw.match(/\{[\s\S]*\}/);
+    if (!match) throw new SyntaxError('No JSON object found in response');
+    const arch = JSON.parse(match[0]);
+    renderResult(arch);
+  } catch(e) {
+    const msg = e instanceof SyntaxError
+      ? 'Response was not valid JSON — try again.'
+      : (e.message || 'Unknown error. Check your API key and connection.');
+    document.getElementById('output').innerHTML = `<div class="error-card">Error: ${msg}</div>`;
+  }
+
+  btn.disabled = false;
+}
+
+function renderResult(arch) {
+  const agents = arch.agents.map(a => {
+    const cs = colorMap[a.color] || colorMap.blue;
+    return `<div class="agent-card">
+      <div class="a-icon" style="${cs}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      </div>
+      <div class="a-name">${escHtml(a.name)}</div>
+      <div class="a-role">${escHtml(a.role)}</div>
+      <div class="a-tools">${a.tools.map(t => `<span class="tool-tag">${escHtml(t)}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+
+  const flow = arch.orchestrationFlow.map(s => `
+    <div class="flow-step">
+      <div class="step-num">${s.step}</div>
+      <div>
+        <div class="step-agent">${escHtml(s.agent)}</div>
+        <div class="step-action">${escHtml(s.action)}</div>
+        <div class="step-output">${escHtml(s.output)}</div>
+      </div>
+    </div>`).join('');
+
+  const risks = arch.risks.map(r => `
+    <div class="risk-row">
+      <span class="risk-badge risk-${escHtml(r.level)}">${escHtml(r.level)}</span>
+      <div class="risk-text">
+        <div class="risk-title">${escHtml(r.risk)}</div>
+        <div class="risk-mit">${escHtml(r.mitigation)}</div>
+      </div>
+    </div>`).join('');
+
+  window._spec = JSON.stringify(arch, null, 2);
+
+  document.getElementById('output').innerHTML = `
+    <div class="result-header">
+      <div>
+        <div class="sys-name">${escHtml(arch.systemName)}</div>
+        <div class="sys-summary">${escHtml(arch.summary)}</div>
+      </div>
+      <button class="copy-btn" onclick="copySpec()" id="copy-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy spec
+      </button>
+    </div>
+
+    <div class="section-head">Agents</div>
+    <div class="agent-grid">${agents}</div>
+
+    <div class="section-head">Orchestration flow</div>
+    <div class="flow-card">${flow}</div>
+
+    <div class="section-head">Implementation</div>
+    <div class="rec-grid">
+      <div class="rec-card"><div class="rec-label">Framework</div><div class="rec-val">${escHtml(arch.stack.framework)}</div></div>
+      <div class="rec-card"><div class="rec-label">Memory</div><div class="rec-val">${escHtml(arch.stack.memory)}</div></div>
+      <div class="rec-card"><div class="rec-label">Deployment</div><div class="rec-val">${escHtml(arch.stack.deployment)}</div></div>
+      <div class="rec-card"><div class="rec-label">Build time</div><div class="rec-val">${escHtml(arch.stack.estimatedBuildTime)}</div></div>
+    </div>
+
+    <div class="section-head">Risks and mitigations</div>
+    <div class="risk-card">${risks}</div>`;
+}
+
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function copySpec() {
+  if (!window._spec) return;
+  navigator.clipboard.writeText(window._spec).then(() => {
+    const btn = document.getElementById('copy-btn');
+    if (btn) {
+      btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Copied`;
+      setTimeout(() => {
+        btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy spec`;
+      }, 2000);
+    }
+  });
+}
+
+renderKeyBanners();
+</script>
+</body>
+</html>
