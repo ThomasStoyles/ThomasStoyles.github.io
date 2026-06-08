@@ -173,11 +173,22 @@ input.addEventListener('keydown', e => {
 
 sendBtn.addEventListener('click', sendMessage);
 
+function parseMarkdown(text) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/`(.+?)`/g, '<code>$1</code>')
+    .replace(/\n/g, '<br>');
+}
+
 function appendMsg(role, text) {
   const div = document.createElement('div');
   div.className = `chat-msg chat-msg--${role}`;
   const p = document.createElement('p');
-  p.textContent = text;
+  p.innerHTML = parseMarkdown(text);
   div.appendChild(p);
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
