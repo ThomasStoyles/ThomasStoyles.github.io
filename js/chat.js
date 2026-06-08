@@ -63,6 +63,7 @@ Contact:
 - **AI Voice Translator**: Real-time translation using OpenAI Whisper for speech transcription and GPT-3.5 for translation, React frontend, FastAPI backend with API key authentication
 - **AI Stock Predictor**: ML pipeline for stock price movement prediction using historical OHLCV data, technical indicators, and sentiment analysis — benchmarks gradient boosted trees vs LSTM networks
 - **AI Image Recognition (CIFAR)**: CNN implementation for CIFAR-10 image classification, extended with transfer learning
+- **Agent Architecture Benchmarks**: Benchmarks four multi-agent architectures (single agent, sequential, supervisor/worker, parallel) against identical tasks measuring latency, token cost, and output quality. Built directly on the Anthropic SDK with a Claude-as-judge scoring system. Key finding: single agent outperformed all multi-agent architectures on complex reasoning tasks.
 
 ## Technical Skills
 
